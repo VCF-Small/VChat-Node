@@ -1,22 +1,22 @@
 {
-  "name": "vchat-node",
+  "name": "VChat",
   "version": "1.0.0",
-  "description": "simple chat app",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VCF-Small/VChat-Node.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/VCF-Small/VChat-Node/issues"
-  },
-  "homepage": "https://github.com/VCF-Small/VChat-Node#readme",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^1.19.4",
+    "socket.io": "^3.1.0",
+    "tedious": "^11.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
