@@ -37,7 +37,7 @@ app.use(expressValidator());
 // app.use('view-engine', 'ejs');
 app.set('view engine', 'ejs');
  
-app.use('/auth', authRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
