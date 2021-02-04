@@ -48,13 +48,12 @@ router.post('/authentication', function (req, res, next) {
         }
         else { // if user found
             // render to views/user/edit.ejs template file
-            if(bcrypt.compare(password, rows.password))
-            {
+            if (bcrypt.compare(password, rows.password)) {
                 req.session.loggedin = true;
                 req.session.username = username;
                 res.redirect('/home');
             }
-            else{
+            else {
                 // popupS.alert({
                 //     title : 'Error',
                 //     content : 'Please correct username and Password'
@@ -87,7 +86,7 @@ router.post('/post', function (req, res, next) {
     req.assert('username', 'Username is required').notEmpty();          //Validate name
     req.assert('email', 'A valid email is required').isEmail();  //Validate email
     req.assert('password', 'Password is required').notEmpty();   //Validate password
-    req.assert('password', 'Password length must be in between 6 to 16').isLength({min:6, max:16});   //Validate password
+    req.assert('password', 'Password length must be in between 6 to 16').isLength({ min: 6, max: 16 });   //Validate password
     if (req.sanitize('password').escape().trim() == req.sanitize('password_repeat').escape().trim()) {
         var errors = req.validationErrors();
         if (!errors) {   //No errors were found.  Passed Validation!
@@ -98,7 +97,7 @@ router.post('/post', function (req, res, next) {
             address = req.sanitize('address').escape().trim();
             password = req.sanitize('password').escape().trim();
             var hashedPassword = bcrypt.hash(password, 10);
-            connection.query("INSERT INTO `users` (`username`, `email`, `DateOfBirth`, `PhoneNumber`, `address`, `password`) VALUES ('"+username+"', '"+email+"', '"+DateOfBirth+"', '"+PhoneNumber+"','"+address+"','"+hashedPassword+"')", function (err, result) {
+            connection.query("INSERT INTO `users` (`username`, `email`, `DateOfBirth`, `PhoneNumber`, `address`, `password`) VALUES ('" + username + "', '" + email + "', '" + DateOfBirth + "', '" + PhoneNumber + "','" + address + "','" + hashedPassword + "')", function (err, result) {
                 //if(err) throw err
                 if (err) {
                     // req.flash('error', err);
@@ -114,9 +113,14 @@ router.post('/post', function (req, res, next) {
                         password_repeat: ''
                     });
                 } else {
-                    // alert('You have successfully signup!');
-                    // req.flash('success', 'You have successfully signup!');
-                    res.redirect('/');
+                    var TableName = username + "_friend's";
+                    connection.query("CREATE TABLE ?? (name VARCHAR(255),address VARCHAR(255))", [TableName], (err, result) => {
+                        if (err) throw err;
+                        // alert('You have successfully signup!');
+                        // req.flash('success', 'You have successfully signup!');
+                        res.redirect('/');
+                    });
+
                 }
             });
         }
